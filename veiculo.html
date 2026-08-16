@@ -1,0 +1,1013 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Veículo | Facilita Veículos</title>
+
+    <meta name="description" content="Confira todos os detalhes deste veículo.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ========================================
+           PÁGINA DO VEÍCULO
+        ======================================== */
+
+        .vehicle-detail-status {
+            display: inline-block;
+
+            margin-top: 8px;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .vehicle-page {
+
+            padding:
+                130px 0 100px;
+
+        }
+
+
+        /* ========================================
+           VOLTAR
+        ======================================== */
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 35px;
+
+            color: #92979f;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+        }
+
+
+        .back-button:hover {
+
+            color: var(--green);
+
+        }
+
+
+        /* ========================================
+           LAYOUT
+        ======================================== */
+
+        .vehicle-detail-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 0.8fr;
+
+            gap: 50px;
+
+            align-items: start;
+
+        }
+
+
+        /* ========================================
+           GALERIA
+        ======================================== */
+
+        .vehicle-gallery {
+
+            width: 100%;
+
+        }
+
+
+        .vehicle-main-image {
+
+            width: 100%;
+
+            height: 520px;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            background: var(--dark);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.07);
+
+        }
+
+
+        .vehicle-main-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .vehicle-thumbnails {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 10px;
+
+            margin-top: 12px;
+
+        }
+
+
+        .vehicle-thumbnail {
+
+            height: 90px;
+
+            padding: 0;
+
+            border:
+                2px solid transparent;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            background: var(--dark);
+
+            cursor: pointer;
+
+            opacity: 0.65;
+
+            transition: 0.3s;
+
+        }
+
+
+        .vehicle-thumbnail:hover {
+
+            opacity: 1;
+
+        }
+
+
+        .vehicle-thumbnail.active {
+
+            border-color:
+                var(--green);
+
+            opacity: 1;
+
+        }
+
+
+        .vehicle-thumbnail img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        /* ========================================
+           INFORMAÇÕES
+        ======================================== */
+
+        .vehicle-detail-info {
+
+            position: sticky;
+
+            top: 110px;
+
+        }
+
+
+        /* ========================================
+           CONDIÇÃO
+        ======================================== */
+
+        .vehicle-detail-category {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            width: fit-content;
+
+            min-height: 25px;
+
+            padding:
+                5px 10px;
+
+            border-radius: 4px;
+
+            background:
+                rgba(0, 255, 140, 0.08);
+
+            color:
+                var(--green);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        /* ========================================
+           STATUS
+        ======================================== */
+
+        .vehicle-status-wrapper {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 12px;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+        }
+
+
+        .vehicle-status-label {
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        #vehicleStatus {
+
+            font-weight: 800;
+
+            color: var(--green);
+
+        }
+
+
+        #vehicleStatus.vendido {
+
+            color: #ff5c5c;
+
+        }
+
+
+        #vehicleStatus.reservado {
+
+            color: #ffc857;
+
+        }
+
+
+        #vehicleStatus.disponivel {
+
+            color: var(--green);
+
+        }
+
+
+        /* ========================================
+           TÍTULO
+        ======================================== */
+
+        .vehicle-detail-info h1 {
+
+            margin-top: 12px;
+
+            font-size: clamp(35px,
+                    4vw,
+                    52px);
+
+            line-height: 1;
+
+            letter-spacing: -2px;
+
+        }
+
+
+        .vehicle-detail-version {
+
+            display: block;
+
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 15px;
+
+        }
+
+
+        /* ========================================
+           PREÇO
+        ======================================== */
+
+        .vehicle-detail-price {
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.08);
+
+        }
+
+
+        .vehicle-detail-price small {
+
+            display: block;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+        }
+
+
+        .vehicle-detail-price strong {
+
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--green);
+
+            font-size: 32px;
+
+        }
+
+
+        /* ========================================
+           DETALHES
+        ======================================== */
+
+        .vehicle-specs {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .vehicle-spec {
+
+            padding: 18px;
+
+            background: var(--dark);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.07);
+
+            border-radius: 8px;
+
+        }
+
+
+        .vehicle-spec span {
+
+            display: block;
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .vehicle-spec strong {
+
+            display: block;
+
+            margin-top: 7px;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ========================================
+           DESCRIÇÃO
+        ======================================== */
+
+        .vehicle-description {
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.08);
+
+        }
+
+
+        .vehicle-description h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .vehicle-description p {
+
+            color: var(--gray);
+
+            line-height: 1.8;
+
+            white-space: pre-line;
+
+        }
+
+
+        /* ========================================
+           WHATSAPP
+        ======================================== */
+
+        .vehicle-whatsapp {
+
+            width: 100%;
+
+            margin-top: 30px;
+
+            background: var(--green);
+
+            color: #000;
+
+            padding: 17px 20px;
+
+            border-radius: 7px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            transition: 0.3s;
+
+        }
+
+
+        .vehicle-whatsapp:hover {
+
+            background: #fff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* ========================================
+           CARREGANDO
+        ======================================== */
+
+        .vehicle-loading {
+
+            min-height: 500px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--gray);
+
+        }
+
+
+        /* ========================================
+           ERRO
+        ======================================== */
+
+        .vehicle-error {
+
+            min-height: 500px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+        }
+
+
+        .vehicle-error h1 {
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .vehicle-error p {
+
+            color: var(--gray);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* ========================================
+           RESPONSIVIDADE
+        ======================================== */
+
+        @media (max-width: 900px) {
+
+            .vehicle-detail-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+
+            }
+
+
+            .vehicle-detail-info {
+
+                position: static;
+
+            }
+
+
+            .vehicle-main-image {
+
+                height: 420px;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .vehicle-page {
+
+                padding-top: 100px;
+
+            }
+
+
+            .vehicle-main-image {
+
+                height: 300px;
+
+            }
+
+
+            .vehicle-thumbnails {
+
+                grid-template-columns:
+                    repeat(4, 1fr);
+
+            }
+
+
+            .vehicle-thumbnail {
+
+                height: 65px;
+
+            }
+
+
+            .vehicle-detail-info h1 {
+
+                font-size: 38px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         CABEÇALHO
+    ======================================== -->
+
+    <header class="header">
+
+        <div class="container header-content">
+
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-symbol">
+                    F
+                </span>
+
+                <span class="logo-text">
+                    facilita
+                </span>
+
+            </a>
+
+
+            <nav class="navigation">
+
+                <a href="index.html#inicio">
+                    Início
+                </a>
+
+                <a href="index.html#estoque">
+                    Estoque
+                </a>
+
+                <a href="index.html#sobre">
+                    Sobre nós
+                </a>
+
+                <a href="index.html#contato">
+                    Contato
+                </a>
+
+            </nav>
+
+
+            <a href="#" class="button button-whatsapp">
+                WhatsApp
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ========================================
+         CONTEÚDO
+    ======================================== -->
+
+    <main>
+
+        <section class="vehicle-page">
+
+            <div class="container">
+
+
+                <!-- =================================
+                     VOLTAR
+                ================================= -->
+
+                <a href="index.html#estoque" class="back-button">
+
+                    ← Voltar para o estoque
+
+                </a>
+
+
+
+                <!-- =================================
+                     CARREGANDO
+                ================================= -->
+
+                <div id="vehicleLoading" class="vehicle-loading">
+
+                    Carregando veículo...
+
+                </div>
+
+
+
+                <!-- =================================
+                     ERRO
+                ================================= -->
+
+                <div id="vehicleError" class="vehicle-error" style="display:none;">
+
+                    <h1>
+                        Veículo não encontrado
+                    </h1>
+
+                    <p>
+                        Esse veículo pode ter sido removido
+                        ou não está mais disponível.
+                    </p>
+
+                    <a href="index.html#estoque" class="button button-primary">
+                        Voltar para o estoque
+                    </a>
+
+                </div>
+
+
+
+                <!-- =================================
+                     VEÍCULO
+                ================================= -->
+
+                <div id="vehicleContent" class="vehicle-detail-grid" style="display:none;">
+
+
+                    <!-- =================================
+                         GALERIA
+                    ================================= -->
+
+                    <div class="vehicle-gallery">
+
+
+                        <div id="mainImage" class="vehicle-main-image">
+
+                        </div>
+
+
+                        <div id="thumbnails" class="vehicle-thumbnails">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         INFORMAÇÕES
+                    ================================= -->
+
+                    <div class="vehicle-detail-info">
+
+
+                        <!-- =================================
+                             CONDIÇÃO DINÂMICA
+                        ================================= -->
+
+                        <span id="vehicleCondition" class="vehicle-detail-category">
+                            —
+                        </span>
+
+                        <span id="vehicleStatus" class="vehicle-detail-status">
+                            —
+                        </span>
+
+                        <h1 id="vehicleTitle">
+                            —
+                        </h1>
+
+
+                        <!-- =================================
+                             TÍTULO
+                        ================================= -->
+
+                        <h1 id="vehicleTitle">
+                            —
+                        </h1>
+
+
+                        <!-- =================================
+                             VERSÃO
+                        ================================= -->
+
+                        <span id="vehicleVersion" class="vehicle-detail-version">
+                        </span>
+
+
+
+                        <!-- =================================
+                             STATUS DINÂMICO
+                        ================================= -->
+
+                        <div class="vehicle-status-wrapper">
+
+                            <span class="vehicle-status-label">
+                                Status:
+                            </span>
+
+                            <strong id="vehicleStatus">
+                                —
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             PREÇO
+                        ================================= -->
+
+                        <div class="vehicle-detail-price">
+
+                            <small>
+                                Valor do veículo
+                            </small>
+
+                            <strong id="vehiclePrice">
+                                —
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             ESPECIFICAÇÕES
+                        ================================= -->
+
+                        <div class="vehicle-specs">
+
+
+                            <!-- ANO -->
+
+                            <div class="vehicle-spec">
+
+                                <span>
+                                    Ano
+                                </span>
+
+                                <strong id="vehicleYear">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- QUILOMETRAGEM -->
+
+                            <div class="vehicle-spec">
+
+                                <span>
+                                    Quilometragem
+                                </span>
+
+                                <strong id="vehicleKm">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- CÂMBIO -->
+
+                            <div class="vehicle-spec">
+
+                                <span>
+                                    Câmbio
+                                </span>
+
+                                <strong id="vehicleCambio">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- COMBUSTÍVEL -->
+
+                            <div class="vehicle-spec">
+
+                                <span>
+                                    Combustível
+                                </span>
+
+                                <strong id="vehicleCombustivel">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- COR -->
+
+                            <div class="vehicle-spec">
+
+                                <span>
+                                    Cor
+                                </span>
+
+                                <strong id="vehicleCor">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             DESCRIÇÃO
+                        ================================= -->
+
+                        <div id="descriptionContainer" class="vehicle-description" style="display:none;">
+
+                            <h2>
+                                Sobre o veículo
+                            </h2>
+
+                            <p id="vehicleDescription">
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- =================================
+                             WHATSAPP
+                        ================================= -->
+
+                        <a id="vehicleWhatsapp" href="#" target="_blank" rel="noopener noreferrer"
+                            class="vehicle-whatsapp">
+
+                            Tenho interesse neste veículo
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script type="module" src="veiculo.js"></script>
+
+
+</body>
+
+</html>
+```

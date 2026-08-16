@@ -1,0 +1,951 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080a0d;
+    color: #ffffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   CORES
+========================= */
+
+:root {
+    --black: #080a0d;
+    --dark: #0d1014;
+    --dark-gray: #15191e;
+    --gray: #92979f;
+    --light: #ffffff;
+
+    --green: #39ff14;
+    --green-dark: #20c900;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(8, 10, 13, 0.88);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-content {
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo-symbol {
+    color: var(--green);
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.logo-text {
+    color: #ffffff;
+}
+
+
+/* MENU */
+
+.navigation {
+    display: flex;
+    gap: 35px;
+}
+
+.navigation a {
+    color: #c8cbd0;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.navigation a:hover {
+    color: var(--green);
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+.button-primary {
+    background: var(--green);
+    color: #000000;
+}
+
+.button-primary:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+}
+
+.button-outline {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.button-outline:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.button-whatsapp {
+    background: #ffffff;
+    color: #000000;
+}
+
+.button-whatsapp:hover {
+    background: var(--green);
+}
+
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+.menu-button {
+    display: none;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 720px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    background-image: url("https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 10, 13, 0.98) 0%,
+            rgba(8, 10, 13, 0.82) 45%,
+            rgba(8, 10, 13, 0.25) 100%
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 80px;
+}
+
+.hero-tag,
+.section-tag {
+    color: var(--green);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 700px;
+
+    margin-top: 20px;
+
+    font-size: clamp(48px, 6vw, 78px);
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    color: var(--green);
+}
+
+.hero p {
+    max-width: 520px;
+
+    margin-top: 25px;
+
+    color: #c4c7cc;
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+
+/* =========================
+   BENEFÍCIOS
+========================= */
+
+.benefits {
+    background: var(--dark);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.benefit {
+    padding: 45px 30px;
+
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.benefit:last-child {
+    border-right: none;
+}
+
+.benefit-number {
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.benefit h3 {
+    margin-top: 15px;
+    font-size: 19px;
+}
+
+.benefit p {
+    margin-top: 10px;
+
+    color: var(--gray);
+
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* =========================
+   ESTOQUE
+========================= */
+
+.inventory {
+    padding: 110px 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-bottom: 45px;
+}
+
+.section-header h2,
+.about h2,
+.contact h2 {
+    max-width: 650px;
+
+    margin-top: 15px;
+
+    font-size: clamp(35px, 4vw, 50px);
+
+    letter-spacing: -2px;
+}
+
+.vehicle-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+
+/* CARD */
+
+.vehicle-card {
+    overflow: hidden;
+
+    background: var(--dark);
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(57,255,20,0.35);
+}
+
+.vehicle-image {
+    height: 250px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.vehicle-image img {
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.vehicle-card:hover .vehicle-image img {
+    transform: scale(1.05);
+}
+
+.vehicle-badge {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    padding: 7px 12px;
+
+    background: var(--green);
+    color: #000;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    border-radius: 4px;
+}
+
+.vehicle-info {
+    padding: 25px;
+}
+
+.vehicle-category {
+    color: var(--green);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.vehicle-info h3 {
+    margin-top: 8px;
+
+    font-size: 21px;
+}
+
+.vehicle-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 15px;
+
+    color: var(--gray);
+
+    font-size: 12px;
+}
+
+.vehicle-details span:not(:last-child)::after {
+    content: "•";
+
+    margin-left: 8px;
+
+    color: #555;
+}
+
+.vehicle-footer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.vehicle-footer small {
+    display: block;
+
+    color: var(--gray);
+
+    font-size: 10px;
+}
+
+.vehicle-footer strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 20px;
+}
+
+.vehicle-link {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 50%;
+
+    color: var(--green);
+
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+.vehicle-link:hover {
+    background: var(--green);
+    color: #000;
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+.about {
+    padding: 120px 0;
+
+    background: var(--dark);
+}
+
+.about-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+.about-text p {
+    max-width: 600px;
+
+    margin: 25px 0 30px;
+
+    color: var(--gray);
+
+    line-height: 1.8;
+}
+
+.about-highlight {
+    height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(57,255,20,0.12),
+            transparent 60%
+        );
+
+    border: 1px solid rgba(57,255,20,0.15);
+
+    border-radius: 15px;
+}
+
+.about-highlight strong {
+    color: var(--green);
+
+    font-size: 90px;
+    line-height: 1;
+}
+
+.about-highlight span {
+    margin-top: 15px;
+
+    color: #aaa;
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact {
+    padding: 130px 0;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(57,255,20,0.08),
+            transparent 45%
+        );
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact h2 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact p {
+    margin: 25px 0 30px;
+
+    color: var(--gray);
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    padding: 35px 0;
+
+    background: #050608;
+
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer p {
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 900px) {
+
+    .navigation,
+    .button-whatsapp {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .vehicle-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================
+   VEÍCULO SEM FOTO
+========================= */
+
+.vehicle-image.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #15191e;
+
+    color: #666;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+
+    .header-content {
+        height: 70px;
+    }
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .section-header {
+        align-items: start;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .vehicle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-image {
+        height: 240px;
+    }
+
+    .about-highlight strong {
+        font-size: 70px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+}
+
+/* =========================
+   ESTOQUE PÚBLICO - 2.3
+========================= */
+
+.vehicle-card {
+    cursor: pointer;
+}
+
+.vehicle-card:focus-within {
+    border-color: rgba(57, 255, 20, 0.35);
+}
+
+.vehicle-badge {
+    z-index: 2;
+}
+
+.vehicle-empty,
+.vehicle-error {
+    grid-column: 1 / -1;
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: var(--gray);
+}
+
+/* ========================================
+   FILTROS DO ESTOQUE - 2.4
+======================================== */
+
+.inventory-filters {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 14px;
+
+    margin-bottom: 40px;
+    padding: 20px;
+
+    background: #0d1014;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    color: #92979f;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 14px;
+
+    background: #15191e;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filter-group input::placeholder {
+    color: #666c74;
+}
+
+.filter-group input:hover,
+.filter-group select:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: var(--green);
+
+    background: #181d22;
+
+    box-shadow:
+        0 0 0 3px rgba(57, 255, 20, 0.08);
+}
+
+.filter-group select {
+    cursor: pointer;
+
+    appearance: none;
+
+    padding-right: 38px;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #92979f 50%),
+        linear-gradient(135deg, #92979f 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 17px) 21px,
+        calc(100% - 12px) 21px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+}
+
+.filter-group select option {
+    background: #15191e;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   CONTADOR DO ESTOQUE
+======================================== */
+
+.vehicle-count {
+    color: #92979f;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE DOS FILTROS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .inventory-filters {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .search-group {
+        grid-column: span 3;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .inventory-filters {
+        grid-template-columns: 1fr;
+
+        padding: 16px;
+
+        gap: 14px;
+    }
+
+    .search-group {
+        grid-column: auto;
+    }
+
+    .filter-group input,
+    .filter-group select {
+        height: 46px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .vehicle-count {
+        margin-top: 5px;
+    }
+
+}
+
+/* =========================
+   BOTÃO LIMPAR FILTROS
+========================= */
+
+.clear-filters {
+    margin-top: 24px;
+
+    padding: 11px 16px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 6px;
+
+    color: #92979f;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.clear-filters:hover {
+    border-color: var(--green);
+
+    color: var(--green);
+
+    background: rgba(57, 255, 20, 0.05);
+}

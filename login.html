@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Facilita Veículos</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-container">
+
+        <div class="login-box">
+
+            <div class="login-logo">
+                <span class="logo-symbol">F</span>
+                <span class="logo-text">facilita</span>
+            </div>
+
+            <span class="login-tag">
+                ÁREA ADMINISTRATIVA
+            </span>
+
+            <h1>
+                Acessar painel
+            </h1>
+
+            <p class="login-description">
+                Entre com seu e-mail e senha para acessar o gerenciamento de veículos.
+            </p>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button button-primary login-button"
+                >
+                    Entrar
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                ></p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="login.js"
+    ></script>
+
+</body>
+
+</html>

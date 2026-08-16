@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin | Facilita Veículos</title>
+
+<link rel="stylesheet" href="admin.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- ========================================
+     HEADER
+======================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-container header-content">
+
+        <div class="admin-logo">
+
+            <span class="logo-symbol">F</span>
+
+            <span class="logo-text">
+                facilita
+            </span>
+
+            <small>
+                ADMIN
+            </small>
+
+        </div>
+
+
+        <div class="admin-actions">
+
+            <a href="index.html" class="back-button">
+                ← Ver site
+            </a>
+
+            <button type="button" id="logoutButton" class="logout-button">
+                Sair
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ========================================
+     CONTEÚDO
+======================================== -->
+
+<main class="admin-main">
+
+    <div class="admin-container">
+
+
+        <!-- ========================================
+             TÍTULO
+        ======================================== -->
+
+        <div class="page-title">
+
+            <span>
+                GERENCIAMENTO
+            </span>
+
+            <h1>
+                Estoque
+            </h1>
+
+            <p>
+                Cadastre e gerencie os veículos da Facilita.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             CADASTRO
+        ======================================== -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <span>01</span>
+
+                <div>
+
+                    <h2>
+                        Cadastrar veículo
+                    </h2>
+
+                    <p>
+                        Adicione um novo veículo ao estoque.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="vehicleForm" class="vehicle-form">
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="marca">
+                            Marca 
+                        </label>
+
+                        <input
+                            type="text"
+                            id="marca"
+                            required
+                            placeholder="Ex.: Ford"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="modelo">
+                            Modelo 
+                        </label>
+
+                        <input
+                            type="text"
+                            id="modelo"
+                            required
+                            placeholder="Ex.: Ranger"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="versao">
+                            Versão
+                        </label>
+
+                        <input
+                            type="text"
+                            id="versao"
+                            placeholder="Ex.: XLT 3.2"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="ano">
+                            Ano 
+                        </label>
+
+                        <input
+                            type="number"
+                            id="ano"
+                            min="1900"
+                            max="2100"
+                            required
+                            placeholder="Ex.: 2018"
+                        >
+
+                    </div>
+
+
+                    <!-- CONDIÇÃO DO VEÍCULO -->
+
+                    <div class="form-group">
+
+                        <label for="condicao">
+                            Condição 
+                        </label>
+
+                        <select id="condicao" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Novo">
+                                Novo
+                            </option>
+
+                            <option value="Seminovo">
+                                Seminovo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="quilometragem">
+                            Quilometragem 
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quilometragem"
+                            min="0"
+                            required
+                            placeholder="Ex.: 130000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="preco">
+                            Preço 
+                        </label>
+
+                        <input
+                            type="number"
+                            id="preco"
+                            min="0"
+                            step="0.01"
+                            required
+                            placeholder="Ex.: 99990"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cambio">
+                            Câmbio 
+                        </label>
+
+                        <select id="cambio" required>
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Manual">
+                                Manual
+                            </option>
+
+                            <option value="Automático">
+                                Automático
+                            </option>
+
+                            <option value="Automatizado">
+                                Automatizado
+                            </option>
+
+                            <option value="CVT">
+                                CVT
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="combustivel">
+                            Combustível
+                        </label>
+
+                        <select id="combustivel">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Flex">
+                                Flex
+                            </option>
+
+                            <option value="Gasolina">
+                                Gasolina
+                            </option>
+
+                            <option value="Etanol">
+                                Etanol
+                            </option>
+
+                            <option value="Diesel">
+                                Diesel
+                            </option>
+
+                            <option value="Híbrido">
+                                Híbrido
+                            </option>
+
+                            <option value="Elétrico">
+                                Elétrico
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cor">
+                            Cor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cor"
+                            placeholder="Ex.: Branco"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+                        <select id="status">
+
+                            <option value="Disponível">
+                                Disponível
+                            </option>
+
+                            <option value="Reservado">
+                                Reservado
+                            </option>
+
+                            <option value="Vendido">
+                                Vendido
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group checkbox-group">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="destaque"
+                            >
+
+                            <span>
+                                Veículo em destaque
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <div class="form-group description-group">
+
+                    <label for="descricao">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="descricao"
+                        rows="5"
+                        placeholder="Descreva o veículo, opcionais, estado de conservação etc."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- FOTOS -->
+
+                <div class="upload-section">
+
+                    <div class="upload-heading">
+
+                        <div>
+
+                            <h3>
+                                Fotos
+                            </h3>
+
+                            <p>
+                                Você pode selecionar várias fotos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="upload-area">
+
+                        <input
+                            type="file"
+                            id="fotos"
+                            accept="image/*"
+                            multiple
+                        >
+
+                        <label for="fotos">
+
+                            <strong>
+                                + Adicionar fotos
+                            </strong>
+
+                            <span>
+                                Clique aqui para selecionar as imagens.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        id="preview"
+                        class="preview-grid"
+                    ></div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                        class="submit-button"
+                    >
+                        Cadastrar veículo
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                ></div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ========================================
+             ESTOQUE
+        ======================================== -->
+
+        <section class="admin-stock">
+
+            <div class="page-title stock-title">
+
+                <span>
+                    ESTOQUE
+                </span>
+
+                <h2>
+                    Veículos cadastrados
+                </h2>
+
+                <p>
+                    Gerencie os veículos disponíveis no sistema.
+                </p>
+
+            </div>
+
+
+            <div
+                id="adminVehicleGrid"
+                class="admin-vehicle-grid"
+            >
+
+                <div class="stock-loading">
+                    Carregando estoque...
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- ========================================
+     MODAL DE EDIÇÃO
+======================================== -->
+
+<div
+    id="editModal"
+    class="modal"
+>
+
+    <div
+        class="modal-overlay"
+        id="modalOverlay"
+    ></div>
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <span>
+                    EDITAR VEÍCULO
+                </span>
+
+                <h2 id="editModalTitle">
+                    Editar veículo
+                </h2>
+
+            </div>
+
+            <button
+                type="button"
+                id="closeEditModal"
+                class="modal-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="editForm">
+
+
+            <input
+                type="hidden"
+                id="editId"
+            >
+
+
+            <!-- DADOS -->
+
+            <div class="modal-section">
+
+                <h3>
+                    Informações
+                </h3>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Marca
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editMarca"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Modelo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editModelo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Versão
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editVersao"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Ano
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editAno"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CONDIÇÃO NA EDIÇÃO -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Condição
+                        </label>
+
+                        <select
+                            id="editCondicao"
+                            required
+                        >
+
+                            <option value="Novo">
+                                Novo
+                            </option>
+
+                            <option value="Seminovo">
+                                Seminovo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Quilometragem
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editKm"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Preço
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editPreco"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Câmbio
+                        </label>
+
+                        <select id="editCambio">
+
+                            <option value="Manual">
+                                Manual
+                            </option>
+
+                            <option value="Automático">
+                                Automático
+                            </option>
+
+                            <option value="Automatizado">
+                                Automatizado
+                            </option>
+
+                            <option value="CVT">
+                                CVT
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Combustível
+                        </label>
+
+                        <select id="editCombustivel">
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Flex">
+                                Flex
+                            </option>
+
+                            <option value="Gasolina">
+                                Gasolina
+                            </option>
+
+                            <option value="Etanol">
+                                Etanol
+                            </option>
+
+                            <option value="Diesel">
+                                Diesel
+                            </option>
+
+                            <option value="Híbrido">
+                                Híbrido
+                            </option>
+
+                            <option value="Elétrico">
+                                Elétrico
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Cor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editCor"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select id="editStatus">
+
+                            <option value="Disponível">
+                                Disponível
+                            </option>
+
+                            <option value="Reservado">
+                                Reservado
+                            </option>
+
+                            <option value="Vendido">
+                                Vendido
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group checkbox-group">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="editDestaque"
+                            >
+
+                            <span>
+                                Veículo em destaque
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group description-group">
+
+                    <label>
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="editDescricao"
+                        rows="5"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOTOS -->
+
+            <div class="modal-section">
+
+                <div class="modal-section-heading">
+
+                    <div>
+
+                        <h3>
+                            Fotos do veículo
+                        </h3>
+
+                        <p>
+                            Gerencie a galeria deste veículo.
+                        </p>
+
+                    </div>
+
+                    <label class="add-photo-button">
+
+                        + Adicionar fotos
+
+                        <input
+                            type="file"
+                            id="editFotos"
+                            accept="image/*"
+                            multiple
+                        >
+
+                    </label>
+
+                </div>
+
+
+                <div
+                    id="editPhotoGrid"
+                    class="edit-photo-grid"
+                ></div>
+
+
+                <p
+                    id="noPhotosMessage"
+                    class="no-photos"
+                >
+                    Nenhuma foto cadastrada.
+                </p>
+
+            </div>
+
+
+            <!-- AÇÕES -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelEdit"
+                    class="cancel-button"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    id="saveEditButton"
+                    class="submit-button"
+                >
+                    Salvar alterações
+                </button>
+
+            </div>
+
+
+            <div
+                id="editMessage"
+                class="form-message"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================
+     JAVASCRIPT
+======================================== -->
+
+<script
+    type="module"
+    src="admin.js"
+></script>
+```
+
+</body>
+
+</html>

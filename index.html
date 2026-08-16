@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Facilita Veículos | Santa Rosa - RS</title>
+
+    <meta name="description" content="Facilita Veículos - Seminovos com facilidade e confiança em Santa Rosa - RS.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+
+        <div class="container header-content">
+
+            <a href="#" class="logo">
+                <span class="logo-symbol">F</span>
+                <span class="logo-text">facilita</span>
+            </a>
+
+            <nav class="navigation">
+                <a href="#inicio">Início</a>
+                <a href="#estoque">Estoque</a>
+                <a href="#sobre">Sobre nós</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+            <a href="#" class="button button-whatsapp whatsapp-link" target="_blank" rel="noopener noreferrer">
+                WhatsApp
+            </a>
+
+            <button class="menu-button" id="menuButton" type="button" aria-label="Abrir menu">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="inicio">
+
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+
+                <span class="hero-tag">
+                    FACILITA VEÍCULOS
+                </span>
+
+                <h1>
+                    Seu próximo carro
+                    <span>está aqui.</span>
+                </h1>
+
+                <p>
+                    Seminovos selecionados com facilidade,
+                    confiança e transparência.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#estoque" class="button button-primary">
+                        Ver estoque
+                    </a>
+
+                    <a href="#" class="button button-outline whatsapp-link" target="_blank" rel="noopener noreferrer">
+                        Falar no WhatsApp
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIFERENCIAIS -->
+        <section class="benefits">
+
+            <div class="container benefits-grid">
+
+                <div class="benefit">
+
+                    <span class="benefit-number">
+                        01
+                    </span>
+
+                    <h3>
+                        +1.500 carros vendidos
+                    </h3>
+
+                    <p>
+                        Experiência e confiança para você
+                        fazer um bom negócio.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Aprovação rápida
+                    </h3>
+
+                    <p>
+                        Facilitamos seu processo de compra
+                        e financiamento.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Seu usado na troca
+                    </h3>
+
+                    <p>
+                        Avaliamos seu veículo para facilitar
+                        a negociação.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ESTOQUE -->
+        <section class="inventory" id="estoque">
+
+            <div class="container">
+
+                <!-- CABEÇALHO DO ESTOQUE -->
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-tag">
+                            NOSSO ESTOQUE
+                        </span>
+
+                        <h2>
+                            Encontre seu próximo carro
+                        </h2>
+
+                    </div>
+
+                    <span class="vehicle-count" id="vehicleCount">
+                        Carregando...
+                    </span>
+
+                </div>
+
+
+                <!-- FILTROS DO ESTOQUE -->
+                <div class="inventory-filters">
+
+
+                    <!-- BUSCA -->
+                    <div class="filter-group search-group">
+
+                        <label for="searchVehicle">
+                            Buscar
+                        </label>
+
+                        <input type="text" id="searchVehicle" placeholder="Digite marca ou modelo...">
+
+                    </div>
+
+
+                    <!-- MARCA -->
+                    <div class="filter-group">
+
+                        <label for="filterMarca">
+                            Marca
+                        </label>
+
+                        <select id="filterMarca">
+
+                            <option value="">
+                                Todas as marcas
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PREÇO -->
+                    <div class="filter-group">
+
+                        <label for="filterPreco">
+                            Preço
+                        </label>
+
+                        <select id="filterPreco">
+
+                            <option value="">
+                                Qualquer preço
+                            </option>
+
+                            <option value="50000">
+                                Até R$ 50 mil
+                            </option>
+
+                            <option value="100000">
+                                Até R$ 100 mil
+                            </option>
+
+                            <option value="150000">
+                                Até R$ 150 mil
+                            </option>
+
+                            <option value="200000">
+                                Até R$ 200 mil
+                            </option>
+
+                            <option value="250000">
+                                Até R$ 250 mil
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ANO -->
+                    <div class="filter-group">
+
+                        <label for="filterAno">
+                            Ano mínimo
+                        </label>
+
+                        <select id="filterAno">
+
+                            <option value="">
+                                Qualquer ano
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ORDENAÇÃO -->
+                    <div class="filter-group">
+
+                        <label for="sortVehicles">
+                            Ordenar
+                        </label>
+
+                        <select id="sortVehicles">
+
+                            <option value="destaque">
+                                Destaques primeiro
+                            </option>
+
+                            <option value="recentes">
+                                Mais recentes
+                            </option>
+
+                            <option value="menor-preco">
+                                Menor preço
+                            </option>
+
+                            <option value="maior-preco">
+                                Maior preço
+                            </option>
+
+                            <option value="menor-km">
+                                Menor quilometragem
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- LIMPAR FILTROS -->
+                    <button type="button" id="clearFilters" class="clear-filters">
+                        Limpar filtros
+                    </button>
+
+                </div>
+
+
+                <!-- VEÍCULOS -->
+                <div class="vehicle-grid" id="vehicleGrid">
+
+                    <p id="vehicleLoading">
+                        Carregando veículos...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOBRE -->
+        <section class="about" id="sobre">
+
+            <div class="container about-content">
+
+                <div class="about-text">
+
+                    <span class="section-tag">
+                        POR QUE A FACILITA?
+                    </span>
+
+                    <h2>
+                        Comprar seu carro
+                        não precisa ser complicado.
+                    </h2>
+
+                    <p>
+                        Na Facilita Veículos, trabalhamos para
+                        tornar sua experiência de compra simples,
+                        transparente e segura.
+                    </p>
+
+                    <a href="#" class="button button-primary">
+                        Conheça a Facilita
+                    </a>
+
+                </div>
+
+
+                <div class="about-highlight">
+
+                    <strong>
+                        +1.500
+                    </strong>
+
+                    <span>
+                        veículos vendidos
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTATO -->
+        <section class="contact" id="contato">
+
+            <div class="container contact-content">
+
+                <span class="section-tag">
+                    VENHA NOS VISITAR
+                </span>
+
+                <h2>
+                    Vamos encontrar
+                    seu próximo carro?
+                </h2>
+
+                <p>
+                    Av. Expedicionário Weber, 2921<br>
+                    Santa Rosa — RS
+                </p>
+
+                <a href="#" class="button button-primary whatsapp-link" target="_blank" rel="noopener noreferrer">
+                    Falar com a Facilita
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div class="logo">
+
+                <span class="logo-symbol">
+                    F
+                </span>
+
+                <span class="logo-text">
+                    facilita
+                </span>
+
+            </div>
+
+            <p>
+                © 2026 Facilita Veículos.
+                Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>
