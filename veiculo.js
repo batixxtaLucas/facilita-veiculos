@@ -66,6 +66,7 @@ function formatarPreco(valor) {
 
     }
 
+
     return Number(valor).toLocaleString(
         "pt-BR",
         {
@@ -88,6 +89,7 @@ function formatarKm(valor) {
         return "Não informado";
 
     }
+
 
     return Number(valor).toLocaleString(
         "pt-BR"
@@ -262,7 +264,7 @@ function mostrarImagem(
 
 
 // ========================================
-// NORMALIZAR TEXTO
+// NORMALIZAR CONDIÇÃO
 // ========================================
 
 function normalizarCondicao(
@@ -312,6 +314,167 @@ function normalizarCondicao(
 
 
     return texto;
+
+}
+
+
+// ========================================
+// NORMALIZAR STATUS
+// ========================================
+
+function normalizarStatus(
+    valor
+) {
+
+    if (
+        valor === null ||
+        valor === undefined ||
+        String(valor).trim() === ""
+    ) {
+
+        return "Disponível";
+
+    }
+
+
+    const texto =
+        String(valor)
+            .trim();
+
+
+    const statusNormalizado =
+        texto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            );
+
+
+    if (
+        statusNormalizado ===
+        "disponivel"
+    ) {
+
+        return "Disponível";
+
+    }
+
+
+    if (
+        statusNormalizado ===
+        "vendido"
+    ) {
+
+        return "Vendido";
+
+    }
+
+
+    if (
+        statusNormalizado ===
+        "reservado"
+    ) {
+
+        return "Reservado";
+
+    }
+
+
+    return texto;
+
+}
+
+
+// ========================================
+// CONFIGURAR WHATSAPP
+// ========================================
+
+function configurarWhatsapp(
+    veiculo
+) {
+
+    const vehicleWhatsapp =
+        document.getElementById(
+            "vehicleWhatsapp"
+        );
+
+
+    if (!vehicleWhatsapp) {
+
+        return;
+
+    }
+
+
+    let mensagem =
+        "Olá! Tenho interesse no ";
+
+
+    mensagem +=
+        veiculo.marca ||
+        "";
+
+
+    mensagem +=
+        " ";
+
+
+    mensagem +=
+        veiculo.modelo ||
+        "";
+
+
+    if (veiculo.versao) {
+
+        mensagem +=
+            " " +
+            veiculo.versao;
+
+    }
+
+
+    if (
+        veiculo.preco !== null &&
+        veiculo.preco !== undefined &&
+        veiculo.preco !== ""
+    ) {
+
+        mensagem +=
+            ", anunciado por " +
+            formatarPreco(
+                veiculo.preco
+            );
+
+    }
+
+
+    mensagem +=
+        ".";
+
+
+    /*
+     * NÚMERO DO WHATSAPP DA LOJA
+     *
+     * Substitua pelo número real,
+     * com código do país e DDD.
+     *
+     * Exemplo:
+     * 5555999999999
+     */
+
+    const numeroWhatsapp =
+        "5555999999999";
+
+
+    vehicleWhatsapp.href =
+        "https://wa.me/" +
+        numeroWhatsapp +
+        "?text=" +
+        encodeURIComponent(
+            mensagem
+        );
 
 }
 
@@ -469,9 +632,67 @@ async function carregarVeiculo() {
 
         if (status) {
 
+            const statusAtual =
+                normalizarStatus(
+                    veiculo.status
+                );
+
+
             status.textContent =
-                veiculo.status ||
-                "Disponível";
+                statusAtual;
+
+
+            status.classList.remove(
+                "disponivel",
+                "vendido",
+                "reservado"
+            );
+
+
+            const statusNormalizado =
+                statusAtual
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(
+                        /[\u0300-\u036f]/g,
+                        ""
+                    );
+
+
+            if (
+                statusNormalizado ===
+                "disponivel"
+            ) {
+
+                status.classList.add(
+                    "disponivel"
+                );
+
+            }
+
+
+            if (
+                statusNormalizado ===
+                "vendido"
+            ) {
+
+                status.classList.add(
+                    "vendido"
+                );
+
+            }
+
+
+            if (
+                statusNormalizado ===
+                "reservado"
+            ) {
+
+                status.classList.add(
+                    "reservado"
+                );
+
+            }
 
         }
 
@@ -509,6 +730,7 @@ async function carregarVeiculo() {
             versao.textContent =
                 veiculo.versao ||
                 "";
+
 
             if (!veiculo.versao) {
 
@@ -684,74 +906,9 @@ async function carregarVeiculo() {
         // WHATSAPP
         // ====================================
 
-        const vehicleWhatsapp =
-            document.getElementById(
-                "vehicleWhatsapp"
-            );
-
-
-        if (vehicleWhatsapp) {
-
-            let mensagem =
-                "Olá! Tenho interesse no ";
-
-
-            mensagem +=
-                veiculo.marca ||
-                "";
-
-
-            mensagem +=
-                " ";
-
-
-            mensagem +=
-                veiculo.modelo ||
-                "";
-
-
-            if (veiculo.versao) {
-
-                mensagem +=
-                    " " +
-                    veiculo.versao;
-
-            }
-
-
-            if (veiculo.preco) {
-
-                mensagem +=
-                    ", anunciado por " +
-                    formatarPreco(
-                        veiculo.preco
-                    );
-
-            }
-
-
-            mensagem +=
-                ".";
-
-
-            /*
-             * COLOQUE AQUI O NÚMERO REAL
-             * DO WHATSAPP DA LOJA.
-             */
-
-            const numeroWhatsapp =
-                "5555999999999";
-
-
-            vehicleWhatsapp.href =
-                "https://wa.me/" +
-                numeroWhatsapp +
-                "?text=" +
-                encodeURIComponent(
-                    mensagem
-                );
-
-        }
+        configurarWhatsapp(
+            veiculo
+        );
 
 
         // ====================================
