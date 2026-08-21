@@ -7,7 +7,10 @@
 
     <title>Facilita Veículos | Santa Rosa - RS</title>
 
-    <meta name="description" content="Facilita Veículos - Seminovos com facilidade e confiança em Santa Rosa - RS.">
+    <meta
+        name="description"
+        content="Facilita Veículos - Veículos selecionados com facilidade, confiança e transparência em Santa Rosa - RS."
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,11 +22,14 @@
 
         <div class="container header-content">
 
-            <a href="#" class="logo">
+            <!-- LOGO -->
+            <a href="#inicio" class="logo">
                 <span class="logo-symbol">F</span>
                 <span class="logo-text">facilita</span>
             </a>
 
+
+            <!-- NAVEGAÇÃO DESKTOP -->
             <nav class="navigation">
                 <a href="#inicio">Início</a>
                 <a href="#estoque">Estoque</a>
@@ -31,13 +37,61 @@
                 <a href="#contato">Contato</a>
             </nav>
 
-            <a href="#" class="button button-whatsapp whatsapp-link" target="_blank" rel="noopener noreferrer">
+
+            <!-- WHATSAPP -->
+            <a
+                href="#"
+                class="button button-whatsapp whatsapp-link"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 WhatsApp
             </a>
 
-            <button class="menu-button" id="menuButton" type="button" aria-label="Abrir menu">
-                ☰
+
+            <!-- MENU -->
+            <button
+                class="menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+
+
+            <!-- MENU DROPDOWN -->
+            <div class="header-menu" id="headerMenu">
+
+                <a href="#inicio">
+                    Início
+                </a>
+
+                <a href="#sobre">
+                    Sobre nós
+                </a>
+
+                <a href="#contato">
+                    Contato
+                </a>
+
+                <a href="#estoque">
+                    Estoque
+                </a>
+
+                <div class="menu-divider"></div>
+
+                <a
+                    href="login.html"
+                    class="admin-menu-link"
+                >
+                    Área administrativa
+                </a>
+
+            </div>
 
         </div>
 
@@ -58,22 +112,30 @@
                 </span>
 
                 <h1>
-                    Seu próximo carro
+                    Seu próximo veículo
                     <span>está aqui.</span>
                 </h1>
 
                 <p>
-                    Seminovos selecionados com facilidade,
+                    Veículos selecionados com facilidade,
                     confiança e transparência.
                 </p>
 
                 <div class="hero-buttons">
 
-                    <a href="#estoque" class="button button-primary">
+                    <a
+                        href="#estoque"
+                        class="button button-primary"
+                    >
                         Ver estoque
                     </a>
 
-                    <a href="#" class="button button-outline whatsapp-link" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="#"
+                        class="button button-outline whatsapp-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         Falar no WhatsApp
                     </a>
 
@@ -96,7 +158,7 @@
                     </span>
 
                     <h3>
-                        +1.500 carros vendidos
+                        +1.500 veículos vendidos
                     </h3>
 
                     <p>
@@ -152,7 +214,6 @@
 
             <div class="container">
 
-                <!-- CABEÇALHO DO ESTOQUE -->
                 <div class="section-header">
 
                     <div>
@@ -162,21 +223,23 @@
                         </span>
 
                         <h2>
-                            Encontre seu próximo carro
+                            Encontre seu próximo veículo
                         </h2>
 
                     </div>
 
-                    <span class="vehicle-count" id="vehicleCount">
+                    <span
+                        class="vehicle-count"
+                        id="vehicleCount"
+                    >
                         Carregando...
                     </span>
 
                 </div>
 
 
-                <!-- FILTROS DO ESTOQUE -->
+                <!-- FILTROS -->
                 <div class="inventory-filters">
-
 
                     <!-- BUSCA -->
                     <div class="filter-group search-group">
@@ -185,7 +248,37 @@
                             Buscar
                         </label>
 
-                        <input type="text" id="searchVehicle" placeholder="Digite marca ou modelo...">
+                        <input
+                            type="text"
+                            id="searchVehicle"
+                            placeholder="Digite marca ou modelo..."
+                        >
+
+                    </div>
+
+
+                    <!-- TIPO -->
+                    <div class="filter-group">
+
+                        <label for="filterTipo">
+                            Tipo
+                        </label>
+
+                        <select id="filterTipo">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                            <option value="carro">
+                                Somente carros
+                            </option>
+
+                            <option value="motocicleta">
+                                Somente motocicletas
+                            </option>
+
+                        </select>
 
                     </div>
 
@@ -201,6 +294,24 @@
 
                             <option value="">
                                 Todas as marcas
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- CÂMBIO -->
+                    <div class="filter-group">
+
+                        <label for="filterCambio">
+                            Câmbio
+                        </label>
+
+                        <select id="filterCambio">
+
+                            <option value="">
+                                Todos
                             </option>
 
                         </select>
@@ -239,6 +350,10 @@
 
                             <option value="250000">
                                 Até R$ 250 mil
+                            </option>
+
+                            <option value="300000">
+                                Até R$ 300 mil
                             </option>
 
                         </select>
@@ -298,8 +413,12 @@
                     </div>
 
 
-                    <!-- LIMPAR FILTROS -->
-                    <button type="button" id="clearFilters" class="clear-filters">
+                    <!-- LIMPAR -->
+                    <button
+                        type="button"
+                        id="clearFilters"
+                        class="clear-filters"
+                    >
                         Limpar filtros
                     </button>
 
@@ -307,7 +426,10 @@
 
 
                 <!-- VEÍCULOS -->
-                <div class="vehicle-grid" id="vehicleGrid">
+                <div
+                    class="vehicle-grid"
+                    id="vehicleGrid"
+                >
 
                     <p id="vehicleLoading">
                         Carregando veículos...
@@ -321,7 +443,10 @@
 
 
         <!-- SOBRE -->
-        <section class="about" id="sobre">
+        <section
+            class="about"
+            id="sobre"
+        >
 
             <div class="container about-content">
 
@@ -332,7 +457,7 @@
                     </span>
 
                     <h2>
-                        Comprar seu carro
+                        Comprar seu veículo
                         não precisa ser complicado.
                     </h2>
 
@@ -342,7 +467,10 @@
                         transparente e segura.
                     </p>
 
-                    <a href="#" class="button button-primary">
+                    <a
+                        href="#contato"
+                        class="button button-primary"
+                    >
                         Conheça a Facilita
                     </a>
 
@@ -367,7 +495,10 @@
 
 
         <!-- CONTATO -->
-        <section class="contact" id="contato">
+        <section
+            class="contact"
+            id="contato"
+        >
 
             <div class="container contact-content">
 
@@ -377,7 +508,7 @@
 
                 <h2>
                     Vamos encontrar
-                    seu próximo carro?
+                    seu próximo veículo?
                 </h2>
 
                 <p>
@@ -385,7 +516,12 @@
                     Santa Rosa — RS
                 </p>
 
-                <a href="#" class="button button-primary whatsapp-link" target="_blank" rel="noopener noreferrer">
+                <a
+                    href="#"
+                    class="button button-primary whatsapp-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     Falar com a Facilita
                 </a>
 
@@ -423,8 +559,10 @@
     </footer>
 
 
-    <!-- JAVASCRIPT -->
-    <script type="module" src="script.js"></script>
+    <script
+        type="module"
+        src="script.js"
+    ></script>
 
 </body>
 

@@ -2,6 +2,8 @@
    RESET
 ========================= */
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +15,7 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Arial, Helvetica', sans-serif;
     background: #080a0d;
     color: #ffffff;
 }
@@ -26,6 +28,12 @@ a {
 img {
     width: 100%;
     display: block;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
 }
 
 .container {
@@ -44,7 +52,6 @@ img {
     --dark-gray: #15191e;
     --gray: #92979f;
     --light: #ffffff;
-
     --green: #39ff14;
     --green-dark: #20c900;
 }
@@ -59,19 +66,17 @@ img {
     top: 0;
     width: 100%;
     z-index: 1000;
-
     background: rgba(8, 10, 13, 0.88);
     backdrop-filter: blur(12px);
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .header-content {
     height: 80px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 
@@ -81,7 +86,6 @@ img {
     display: flex;
     align-items: center;
     gap: 8px;
-
     font-size: 25px;
     font-weight: 800;
     letter-spacing: -1px;
@@ -98,7 +102,7 @@ img {
 }
 
 
-/* MENU */
+/* NAVEGAÇÃO */
 
 .navigation {
     display: flex;
@@ -124,14 +128,10 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 13px 22px;
-
     border-radius: 6px;
-
     font-size: 14px;
     font-weight: 700;
-
     transition: 0.3s;
 }
 
@@ -166,19 +166,98 @@ img {
 
 
 /* =========================
-   MENU MOBILE
+   MENU
 ========================= */
 
 .menu-button {
-    display: none;
-
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     background: transparent;
-    border: none;
-
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
     color: white;
-    font-size: 28px;
-
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-button:hover {
+    border-color: var(--green);
+}
+
+.menu-button span {
+    width: 19px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.menu-button.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-button.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* DROPDOWN */
+
+.header-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 230px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background: #0d1014;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.2s;
+}
+
+.header-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.header-menu a {
+    padding: 13px 14px;
+    color: #c8cbd0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.header-menu a:hover {
+    background: rgba(57, 255, 20, 0.07);
+    color: var(--green);
+}
+
+.menu-divider {
+    height: 1px;
+    margin: 8px 4px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.header-menu .admin-menu-link {
+    color: var(--green);
 }
 
 
@@ -188,14 +267,10 @@ img {
 
 .hero {
     min-height: 720px;
-
     position: relative;
-
     display: flex;
     align-items: center;
-
     background-image: url("https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=2000&q=85");
-
     background-size: cover;
     background-position: center;
 }
@@ -203,14 +278,11 @@ img {
 .hero-overlay {
     position: absolute;
     inset: 0;
-
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             rgba(8, 10, 13, 0.98) 0%,
             rgba(8, 10, 13, 0.82) 45%,
-            rgba(8, 10, 13, 0.25) 100%
-        );
+            rgba(8, 10, 13, 0.25) 100%);
 }
 
 .hero-content {
@@ -222,22 +294,16 @@ img {
 .hero-tag,
 .section-tag {
     color: var(--green);
-
     font-size: 12px;
     font-weight: 800;
-
     letter-spacing: 2px;
 }
 
 .hero h1 {
     max-width: 700px;
-
     margin-top: 20px;
-
     font-size: clamp(48px, 6vw, 78px);
-
     line-height: 0.98;
-
     letter-spacing: -3px;
 }
 
@@ -247,11 +313,8 @@ img {
 
 .hero p {
     max-width: 520px;
-
     margin-top: 25px;
-
     color: #c4c7cc;
-
     font-size: 18px;
     line-height: 1.6;
 }
@@ -259,7 +322,6 @@ img {
 .hero-buttons {
     display: flex;
     gap: 15px;
-
     margin-top: 35px;
 }
 
@@ -270,7 +332,7 @@ img {
 
 .benefits {
     background: var(--dark);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .benefits-grid {
@@ -280,8 +342,7 @@ img {
 
 .benefit {
     padding: 45px 30px;
-
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .benefit:last-child {
@@ -290,7 +351,6 @@ img {
 
 .benefit-number {
     color: var(--green);
-
     font-size: 13px;
     font-weight: 800;
 }
@@ -302,9 +362,7 @@ img {
 
 .benefit p {
     margin-top: 10px;
-
     color: var(--gray);
-
     line-height: 1.6;
     font-size: 14px;
 }
@@ -322,7 +380,6 @@ img {
     display: flex;
     align-items: end;
     justify-content: space-between;
-
     margin-bottom: 45px;
 }
 
@@ -330,79 +387,192 @@ img {
 .about h2,
 .contact h2 {
     max-width: 650px;
-
     margin-top: 15px;
-
     font-size: clamp(35px, 4vw, 50px);
-
     letter-spacing: -2px;
 }
 
 .vehicle-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 24px;
 }
 
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .vehicle-card {
     overflow: hidden;
-
     background: var(--dark);
-
-    border: 1px solid rgba(255,255,255,0.07);
-
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 10px;
-
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .vehicle-card:hover {
     transform: translateY(-5px);
-
-    border-color: rgba(57,255,20,0.35);
+    border-color: rgba(57, 255, 20, 0.35);
 }
+
+.vehicle-card:focus-within {
+    border-color: rgba(57, 255, 20, 0.35);
+}
+
+
+/* =========================
+   IMAGEM DO VEÍCULO
+========================= */
+
+/*
+    IMPORTANTE:
+
+    O formato foi alterado de 16:10 para 4:3.
+
+    Isso deixa o espaço da foto mais alto,
+    reduzindo bastante o corte das laterais
+    das fotos dos veículos.
+
+    A imagem continua usando "cover", portanto:
+
+    - não fica esticada;
+    - não aparecem bordas pretas;
+    - ocupa todo o card;
+    - mantém a proporção original;
+    - corta somente o necessário.
+*/
 
 .vehicle-image {
-    height: 250px;
-
+    width: 100%;
+    aspect-ratio: 4 / 3;
     position: relative;
-
     overflow: hidden;
+    background: #11151a;
 }
+
+
+/*
+    A imagem preenche completamente
+    o espaço sem deformar o veículo.
+*/
 
 .vehicle-image img {
+    width: 100%;
     height: 100%;
-
+    display: block;
     object-fit: cover;
-
-    transition: 0.5s;
+    object-position: center center;
+    transition: transform 0.5s ease;
 }
+
+
+/*
+    Zoom extremamente pequeno no hover.
+    Evita aquele efeito exagerado.
+*/
 
 .vehicle-card:hover .vehicle-image img {
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
+
+
+/* =========================
+   SETAS DAS FOTOS
+========================= */
+
+.photo-arrow {
+    position: absolute;
+    top: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.photo-arrow:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: #000000;
+}
+
+.photo-arrow-left {
+    left: 12px;
+}
+
+.photo-arrow-right {
+    right: 12px;
+}
+
+
+/* =========================
+   CONTADOR DE FOTOS
+========================= */
+
+.photo-counter {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 9px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 4;
+}
+
+
+/* =========================
+   BADGE
+========================= */
 
 .vehicle-badge {
     position: absolute;
-
     top: 15px;
     left: 15px;
-
     padding: 7px 12px;
-
     background: var(--green);
     color: #000;
-
     font-size: 10px;
     font-weight: 800;
-
     border-radius: 4px;
+    z-index: 6;
 }
+
+
+/* =========================
+   SEM FOTO
+========================= */
+
+.vehicle-image.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #15191e;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   INFORMAÇÕES
+========================= */
 
 .vehicle-info {
     padding: 25px;
@@ -410,83 +580,80 @@ img {
 
 .vehicle-category {
     color: var(--green);
-
     font-size: 10px;
     font-weight: 800;
-
     letter-spacing: 1.5px;
 }
 
 .vehicle-info h3 {
-    margin-top: 8px;
-
+    margin-top: 11px;
     font-size: 21px;
 }
+
+.vehicle-version {
+    display: block;
+    margin-top: 5px;
+    color: #92979f;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   DETALHES
+========================= */
 
 .vehicle-details {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-
     margin-top: 15px;
-
     color: var(--gray);
-
     font-size: 12px;
 }
 
 .vehicle-details span:not(:last-child)::after {
     content: "•";
-
     margin-left: 8px;
-
     color: #555;
 }
+
+
+/* =========================
+   FOOTER DO CARD
+========================= */
 
 .vehicle-footer {
     display: flex;
     align-items: end;
     justify-content: space-between;
-
     margin-top: 25px;
-
     padding-top: 20px;
-
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .vehicle-footer small {
     display: block;
-
     color: var(--gray);
-
     font-size: 10px;
 }
 
 .vehicle-footer strong {
     display: block;
-
     margin-top: 4px;
-
     font-size: 20px;
 }
 
 .vehicle-link {
     width: 40px;
     height: 40px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border: 1px solid rgba(255,255,255,0.15);
-
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50%;
-
     color: var(--green);
-
     font-size: 20px;
-
     transition: 0.3s;
 }
 
@@ -502,60 +669,45 @@ img {
 
 .about {
     padding: 120px 0;
-
     background: var(--dark);
 }
 
 .about-content {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     align-items: center;
-
     gap: 80px;
 }
 
 .about-text p {
     max-width: 600px;
-
     margin: 25px 0 30px;
-
     color: var(--gray);
-
     line-height: 1.8;
 }
 
 .about-highlight {
     height: 350px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     background:
-        radial-gradient(
-            circle,
-            rgba(57,255,20,0.12),
-            transparent 60%
-        );
-
-    border: 1px solid rgba(57,255,20,0.15);
-
+        radial-gradient(circle,
+            rgba(57, 255, 20, 0.12),
+            transparent 60%);
+    border: 1px solid rgba(57, 255, 20, 0.15);
     border-radius: 15px;
 }
 
 .about-highlight strong {
     color: var(--green);
-
     font-size: 90px;
     line-height: 1;
 }
 
 .about-highlight span {
     margin-top: 15px;
-
     color: #aaa;
 }
 
@@ -566,15 +718,11 @@ img {
 
 .contact {
     padding: 130px 0;
-
     text-align: center;
-
     background:
-        radial-gradient(
-            circle at center,
-            rgba(57,255,20,0.08),
-            transparent 45%
-        );
+        radial-gradient(circle at center,
+            rgba(57, 255, 20, 0.08),
+            transparent 45%);
 }
 
 .contact-content {
@@ -590,9 +738,7 @@ img {
 
 .contact p {
     margin: 25px 0 30px;
-
     color: var(--gray);
-
     line-height: 1.8;
 }
 
@@ -603,10 +749,8 @@ img {
 
 .footer {
     padding: 35px 0;
-
     background: #050608;
-
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer-content {
@@ -617,8 +761,149 @@ img {
 
 .footer p {
     color: #666;
-
     font-size: 12px;
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+.inventory-filters {
+    display: grid;
+    grid-template-columns:
+        1.5fr 1fr 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #0d1014;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    color: #92979f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    background: #15191e;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filter-group input::placeholder {
+    color: #666c74;
+}
+
+.filter-group input:hover,
+.filter-group select:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: var(--green);
+    background: #181d22;
+    box-shadow:
+        0 0 0 3px rgba(57, 255, 20, 0.08);
+}
+
+.filter-group select {
+    cursor: pointer;
+    appearance: none;
+    padding-right: 38px;
+    background-image:
+        linear-gradient(45deg,
+            transparent 50%,
+            #92979f 50%),
+        linear-gradient(135deg,
+            #92979f 50%,
+            transparent 50%);
+    background-position:
+        calc(100% - 17px) 21px,
+        calc(100% - 12px) 21px;
+    background-size:
+        5px 5px,
+        5px 5px;
+    background-repeat: no-repeat;
+}
+
+.filter-group select option {
+    background: #15191e;
+    color: #ffffff;
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.vehicle-count {
+    color: #92979f;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   LIMPAR FILTROS
+========================= */
+
+.clear-filters {
+    margin-top: 24px;
+    padding: 11px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #92979f;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.clear-filters:hover {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(57, 255, 20, 0.05);
+}
+
+
+/* =========================
+   ESTADOS
+========================= */
+
+.vehicle-empty,
+.vehicle-error {
+    grid-column: 1 / -1;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    color: var(--gray);
 }
 
 
@@ -626,15 +911,23 @@ img {
    RESPONSIVIDADE
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
-    .navigation,
-    .button-whatsapp {
-        display: none;
+    .inventory-filters {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    .menu-button {
-        display: block;
+    .search-group {
+        grid-column: span 3;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .navigation {
+        display: none;
     }
 
     .vehicle-grid {
@@ -647,27 +940,36 @@ img {
 
 }
 
-/* =========================
-   VEÍCULO SEM FOTO
-========================= */
 
-.vehicle-image.no-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (max-width: 700px) {
 
-    background: #15191e;
+    .inventory-filters {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 14px;
+    }
 
-    color: #666;
+    .search-group {
+        grid-column: auto;
+    }
 
-    font-size: 13px;
-    font-weight: 600;
+    .filter-group input,
+    .filter-group select {
+        height: 46px;
+    }
+
 }
+
 
 @media (max-width: 600px) {
 
     .header-content {
         height: 70px;
+    }
+
+    .header-menu {
+        top: 62px;
+        right: 0;
     }
 
     .hero {
@@ -693,7 +995,7 @@ img {
 
     .benefit {
         border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .section-header {
@@ -706,8 +1008,14 @@ img {
         grid-template-columns: 1fr;
     }
 
+    /*
+        No celular mantemos 4:3.
+        Assim a foto continua grande e
+        não fica aquela faixa achatada.
+    */
+
     .vehicle-image {
-        height: 240px;
+        aspect-ratio: 4 / 3;
     }
 
     .about-highlight strong {
@@ -720,232 +1028,25 @@ img {
         text-align: center;
     }
 
+    .button-whatsapp {
+        display: none;
+    }
+
 }
+
 
 /* =========================
-   ESTOQUE PÚBLICO - 2.3
+   TELAS MUITO PEQUENAS
 ========================= */
 
-.vehicle-card {
-    cursor: pointer;
-}
+@media (max-width: 380px) {
 
-.vehicle-card:focus-within {
-    border-color: rgba(57, 255, 20, 0.35);
-}
-
-.vehicle-badge {
-    z-index: 2;
-}
-
-.vehicle-empty,
-.vehicle-error {
-    grid-column: 1 / -1;
-
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: var(--gray);
-}
-
-/* ========================================
-   FILTROS DO ESTOQUE - 2.4
-======================================== */
-
-.inventory-filters {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
-    gap: 14px;
-
-    margin-bottom: 40px;
-    padding: 20px;
-
-    background: #0d1014;
-
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.filter-group label {
-    color: #92979f;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-}
-
-.filter-group input,
-.filter-group select {
-    width: 100%;
-    height: 48px;
-
-    padding: 0 14px;
-
-    background: #15191e;
-
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 7px;
-
-    color: #ffffff;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-
-    outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.filter-group input::placeholder {
-    color: #666c74;
-}
-
-.filter-group input:hover,
-.filter-group select:hover {
-    border-color: rgba(255, 255, 255, 0.18);
-}
-
-.filter-group input:focus,
-.filter-group select:focus {
-    border-color: var(--green);
-
-    background: #181d22;
-
-    box-shadow:
-        0 0 0 3px rgba(57, 255, 20, 0.08);
-}
-
-.filter-group select {
-    cursor: pointer;
-
-    appearance: none;
-
-    padding-right: 38px;
-
-    background-image:
-        linear-gradient(45deg, transparent 50%, #92979f 50%),
-        linear-gradient(135deg, #92979f 50%, transparent 50%);
-
-    background-position:
-        calc(100% - 17px) 21px,
-        calc(100% - 12px) 21px;
-
-    background-size:
-        5px 5px,
-        5px 5px;
-
-    background-repeat: no-repeat;
-}
-
-.filter-group select option {
-    background: #15191e;
-    color: #ffffff;
-}
-
-
-/* ========================================
-   CONTADOR DO ESTOQUE
-======================================== */
-
-.vehicle-count {
-    color: #92979f;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-
-/* ========================================
-   RESPONSIVIDADE DOS FILTROS
-======================================== */
-
-@media (max-width: 1100px) {
-
-    .inventory-filters {
-        grid-template-columns: repeat(3, 1fr);
+    .vehicle-image {
+        aspect-ratio: 4 / 3;
     }
 
-    .search-group {
-        grid-column: span 3;
+    .vehicle-info {
+        padding: 20px;
     }
 
-}
-
-
-@media (max-width: 700px) {
-
-    .inventory-filters {
-        grid-template-columns: 1fr;
-
-        padding: 16px;
-
-        gap: 14px;
-    }
-
-    .search-group {
-        grid-column: auto;
-    }
-
-    .filter-group input,
-    .filter-group select {
-        height: 46px;
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .vehicle-count {
-        margin-top: 5px;
-    }
-
-}
-
-/* =========================
-   BOTÃO LIMPAR FILTROS
-========================= */
-
-.clear-filters {
-    margin-top: 24px;
-
-    padding: 11px 16px;
-
-    background: transparent;
-
-    border: 1px solid rgba(255, 255, 255, 0.15);
-
-    border-radius: 6px;
-
-    color: #92979f;
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.clear-filters:hover {
-    border-color: var(--green);
-
-    color: var(--green);
-
-    background: rgba(57, 255, 20, 0.05);
 }

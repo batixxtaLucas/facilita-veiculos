@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+
         /* ========================================
            PÁGINA DO VEÍCULO
         ======================================== */
@@ -40,6 +41,343 @@
         .vehicle-page {
 
             padding: 130px 0 100px;
+
+        }
+
+
+        /* ========================================
+           SETAS DA GALERIA
+        ======================================== */
+
+        .vehicle-main-image {
+
+            position: relative;
+
+        }
+
+
+        .vehicle-gallery-arrow {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 46px;
+
+            height: 46px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 0;
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            color: #fff;
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 5;
+
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease,
+                border-color 0.25s ease;
+               
+
+        }
+
+
+        .vehicle-gallery-arrow:hover {
+
+            background: rgba(#39ff14);
+
+            border-color: var(--green);
+
+            color: #39ff14;
+
+        }
+
+
+        .vehicle-gallery-arrow-left {
+
+            left: 18px;
+
+        }
+
+
+        .vehicle-gallery-arrow-right {
+
+            right: 18px;
+
+        }
+
+
+        /* ========================================
+           CONTADOR DA GALERIA
+        ======================================== */
+
+        .vehicle-gallery-counter {
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 16px;
+
+            transform: translateX(-50%);
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            color: #fff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            z-index: 5;
+
+            pointer-events: none;
+
+        }
+
+
+        /* ========================================
+           IMAGEM PRINCIPAL
+        ======================================== */
+
+        .vehicle-main-image img {
+
+            cursor: zoom-in;
+
+        }
+
+
+        /* ========================================
+           MODAL DA IMAGEM
+        ======================================== */
+
+        .image-lightbox {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            background: rgba(0, 0, 0, 0.94);
+
+            z-index: 99999;
+
+        }
+
+
+        .image-lightbox.open {
+
+            display: flex;
+
+        }
+
+
+        .image-lightbox-image {
+
+            max-width: 94vw;
+
+            max-height: 90vh;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+            border-radius: 6px;
+
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.65);
+
+            cursor: default;
+
+        }
+
+
+        /* ========================================
+           BOTÃO FECHAR
+        ======================================== */
+
+        .image-lightbox-close {
+
+            position: fixed;
+
+            top: 20px;
+
+            right: 25px;
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            color: #fff;
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100002;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .image-lightbox-close:hover {
+
+            background: var(--green);
+
+            color: #000;
+
+            border-color: var(--green);
+
+        }
+
+
+        /* ========================================
+           SETAS DO LIGHTBOX
+        ======================================== */
+
+        .image-lightbox-arrow {
+
+            position: fixed;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            color: #fff;
+
+            font-size: 38px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100001;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .image-lightbox-arrow:hover {
+
+            background: var(--green);
+
+            color: #000;
+
+            border-color: var(--green);
+
+        }
+
+
+        .image-lightbox-arrow-left {
+
+            left: 25px;
+
+        }
+
+
+        .image-lightbox-arrow-right {
+
+            right: 25px;
+
+        }
+
+
+        /* ========================================
+           CONTADOR DO LIGHTBOX
+        ======================================== */
+
+        .image-lightbox-counter {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 20px;
+
+            transform: translateX(-50%);
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            color: #fff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            z-index: 100001;
 
         }
 
@@ -385,15 +723,41 @@
         }
 
 
+        /* ========================================
+           CARDS DOS DETALHES
+           
+           FUNDO MAIS TRANSPARENTE
+        ======================================== */
+
         .vehicle-spec {
 
             padding: 18px;
 
-            background: var(--dark);
+            background: rgba(255, 255, 255, 0.025);
 
             border: 1px solid rgba(255, 255, 255, 0.07);
 
             border-radius: 8px;
+
+            backdrop-filter: blur(8px);
+
+            -webkit-backdrop-filter: blur(8px);
+
+            transition:
+                background 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease;
+
+        }
+
+
+        .vehicle-spec:hover {
+
+            background: rgba(255, 255, 255, 0.045);
+
+            border-color: rgba(0, 255, 140, 0.18);
+
+            transform: translateY(-2px);
 
         }
 
@@ -626,7 +990,64 @@
 
             }
 
+
+            .image-lightbox {
+
+                padding: 15px;
+
+            }
+
+
+            .image-lightbox-image {
+
+                max-width: 96vw;
+
+                max-height: 82vh;
+
+            }
+
+
+            .image-lightbox-close {
+
+                top: 12px;
+
+                right: 12px;
+
+                width: 42px;
+
+                height: 42px;
+
+                font-size: 28px;
+
+            }
+
+
+            .image-lightbox-arrow {
+
+                width: 42px;
+
+                height: 42px;
+
+                font-size: 30px;
+
+            }
+
+
+            .image-lightbox-arrow-left {
+
+                left: 10px;
+
+            }
+
+
+            .image-lightbox-arrow-right {
+
+                right: 10px;
+
+            }
+
         }
+
     </style>
 
 </head>
@@ -677,10 +1098,15 @@
             </nav>
 
 
-            <a href="https://wa.me/5555999999999" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/5555999999999"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="button button-whatsapp">
+
                 WhatsApp
+
             </a>
+
         </div>
 
     </header>
@@ -717,7 +1143,9 @@
 
                 <!-- ERRO -->
 
-                <div id="vehicleError" class="vehicle-error" style="display: none;">
+                <div id="vehicleError"
+                    class="vehicle-error"
+                    style="display: none;">
 
                     <h1>
                         Veículo não encontrado
@@ -728,8 +1156,11 @@
                         ou não está mais disponível.
                     </p>
 
-                    <a href="index.html#estoque" class="button button-primary">
+                    <a href="index.html#estoque"
+                        class="button button-primary">
+
                         Voltar para o estoque
+
                     </a>
 
                 </div>
@@ -737,18 +1168,22 @@
 
                 <!-- VEÍCULO -->
 
-                <div id="vehicleContent" class="vehicle-detail-grid" style="display: none;">
+                <div id="vehicleContent"
+                    class="vehicle-detail-grid"
+                    style="display: none;">
 
 
                     <!-- GALERIA -->
 
                     <div class="vehicle-gallery">
 
-                        <div id="mainImage" class="vehicle-main-image">
+                        <div id="mainImage"
+                            class="vehicle-main-image">
                         </div>
 
 
-                        <div id="thumbnails" class="vehicle-thumbnails">
+                        <div id="thumbnails"
+                            class="vehicle-thumbnails">
                         </div>
 
                     </div>
@@ -761,21 +1196,28 @@
 
                         <!-- CONDIÇÃO -->
 
-                        <span id="vehicleCondition" class="vehicle-detail-category">
+                        <span id="vehicleCondition"
+                            class="vehicle-detail-category">
+
                             —
+
                         </span>
 
 
                         <!-- TÍTULO -->
 
                         <h1 id="vehicleTitle">
+
                             —
+
                         </h1>
 
 
                         <!-- VERSÃO -->
 
-                        <span id="vehicleVersion" class="vehicle-detail-version">
+                        <span id="vehicleVersion"
+                            class="vehicle-detail-version">
+
                         </span>
 
 
@@ -784,11 +1226,15 @@
                         <div class="vehicle-status-wrapper">
 
                             <span class="vehicle-status-label">
+
                                 Status:
+
                             </span>
 
                             <strong id="vehicleStatus">
+
                                 —
+
                             </strong>
 
                         </div>
@@ -799,11 +1245,15 @@
                         <div class="vehicle-detail-price">
 
                             <small>
+
                                 Valor do veículo
+
                             </small>
 
                             <strong id="vehiclePrice">
+
                                 —
+
                             </strong>
 
                         </div>
@@ -813,8 +1263,6 @@
 
                         <div class="vehicle-specs">
 
-
-                            <!-- ANO -->
 
                             <div class="vehicle-spec">
 
@@ -829,8 +1277,6 @@
                             </div>
 
 
-                            <!-- QUILOMETRAGEM -->
-
                             <div class="vehicle-spec">
 
                                 <span>
@@ -843,8 +1289,6 @@
 
                             </div>
 
-
-                            <!-- CÂMBIO -->
 
                             <div class="vehicle-spec">
 
@@ -859,8 +1303,6 @@
                             </div>
 
 
-                            <!-- COMBUSTÍVEL -->
-
                             <div class="vehicle-spec">
 
                                 <span>
@@ -873,8 +1315,6 @@
 
                             </div>
 
-
-                            <!-- COR -->
 
                             <div class="vehicle-spec">
 
@@ -894,7 +1334,9 @@
 
                         <!-- DESCRIÇÃO -->
 
-                        <div id="descriptionContainer" class="vehicle-description" style="display: none;">
+                        <div id="descriptionContainer"
+                            class="vehicle-description"
+                            style="display: none;">
 
                             <h2>
                                 Sobre o veículo
@@ -908,7 +1350,10 @@
 
                         <!-- WHATSAPP -->
 
-                        <a id="vehicleWhatsapp" href="#" target="_blank" rel="noopener noreferrer"
+                        <a id="vehicleWhatsapp"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             class="vehicle-whatsapp">
 
                             Tenho interesse neste veículo
@@ -928,11 +1373,73 @@
 
 
     <!-- ========================================
+         LIGHTBOX
+    ======================================== -->
+
+    <div id="imageLightbox"
+        class="image-lightbox"
+        aria-hidden="true">
+
+
+        <!-- FECHAR -->
+
+        <button id="imageLightboxClose"
+            class="image-lightbox-close"
+            type="button"
+            aria-label="Fechar imagem">
+
+            ×
+
+        </button>
+
+
+        <!-- SETA ESQUERDA -->
+
+        <button id="lightboxArrowLeft"
+            class="image-lightbox-arrow image-lightbox-arrow-left"
+            type="button"
+            aria-label="Foto anterior">
+
+            ‹
+
+        </button>
+
+
+        <!-- IMAGEM -->
+
+        <img id="imageLightboxImage"
+            class="image-lightbox-image"
+            src=""
+            alt="Imagem ampliada do veículo">
+
+
+        <!-- SETA DIREITA -->
+
+        <button id="lightboxArrowRight"
+            class="image-lightbox-arrow image-lightbox-arrow-right"
+            type="button"
+            aria-label="Próxima foto">
+
+            ›
+
+        </button>
+
+
+        <!-- CONTADOR -->
+
+        <span id="imageLightboxCounter"
+            class="image-lightbox-counter">
+
+        </span>
+
+    </div>
+
+
+    <!-- ========================================
          JAVASCRIPT
     ======================================== -->
 
     <script type="module" src="veiculo.js"></script>
-
 
 </body>
 

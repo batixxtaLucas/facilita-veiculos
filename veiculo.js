@@ -51,6 +51,50 @@ const thumbnails =
 
 
 // ========================================
+// GALERIA
+// ========================================
+
+let listaFotosGaleria = [];
+
+let fotoAtualGaleria = 0;
+
+
+// ========================================
+// LIGHTBOX
+// ========================================
+
+const imageLightbox =
+    document.getElementById(
+        "imageLightbox"
+    );
+
+const imageLightboxImage =
+    document.getElementById(
+        "imageLightboxImage"
+    );
+
+const imageLightboxClose =
+    document.getElementById(
+        "imageLightboxClose"
+    );
+
+const lightboxArrowLeft =
+    document.getElementById(
+        "lightboxArrowLeft"
+    );
+
+const lightboxArrowRight =
+    document.getElementById(
+        "lightboxArrowRight"
+    );
+
+const imageLightboxCounter =
+    document.getElementById(
+        "imageLightboxCounter"
+    );
+
+
+// ========================================
 // FORMATAÇÃO
 // ========================================
 
@@ -65,7 +109,6 @@ function formatarPreco(valor) {
         return "Consultar";
 
     }
-
 
     return Number(valor).toLocaleString(
         "pt-BR",
@@ -89,7 +132,6 @@ function formatarKm(valor) {
         return "Não informado";
 
     }
-
 
     return Number(valor).toLocaleString(
         "pt-BR"
@@ -179,6 +221,502 @@ function mostrarConteudo() {
 
 
 // ========================================
+// ATUALIZAR CONTADOR
+// ========================================
+
+function atualizarContadorFoto() {
+
+    const contador =
+        document.getElementById(
+            "photoCounter"
+        );
+
+    if (!contador) {
+        return;
+    }
+
+
+    if (
+        listaFotosGaleria.length === 0
+    ) {
+
+        contador.textContent =
+            "";
+
+        return;
+
+    }
+
+
+    contador.textContent =
+        `${fotoAtualGaleria + 1}/${listaFotosGaleria.length}`;
+
+}
+
+
+// ========================================
+// ATUALIZAR LIGHTBOX
+// ========================================
+
+function atualizarLightbox() {
+
+    if (
+        !imageLightbox ||
+        !imageLightboxImage
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        listaFotosGaleria.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const foto =
+        listaFotosGaleria[
+            fotoAtualGaleria
+        ];
+
+
+    if (
+        !foto ||
+        !foto.url
+    ) {
+
+        return;
+
+    }
+
+
+    imageLightboxImage.src =
+        String(
+            foto.url
+        ).trim();
+
+
+    imageLightboxImage.alt =
+        "Imagem ampliada do veículo";
+
+
+    if (imageLightboxCounter) {
+
+        imageLightboxCounter.textContent =
+            `${fotoAtualGaleria + 1}/${listaFotosGaleria.length}`;
+
+    }
+
+
+    const mostrarSetas =
+        listaFotosGaleria.length > 1;
+
+
+    if (lightboxArrowLeft) {
+
+        lightboxArrowLeft.style.display =
+            mostrarSetas
+                ? "flex"
+                : "none";
+
+    }
+
+
+    if (lightboxArrowRight) {
+
+        lightboxArrowRight.style.display =
+            mostrarSetas
+                ? "flex"
+                : "none";
+
+    }
+
+}
+
+
+// ========================================
+// ABRIR LIGHTBOX
+// ========================================
+
+function abrirLightbox() {
+
+    if (
+        !imageLightbox ||
+        !imageLightboxImage
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        listaFotosGaleria.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    atualizarLightbox();
+
+
+    imageLightbox.classList.add(
+        "open"
+    );
+
+
+    imageLightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+// ========================================
+// FECHAR LIGHTBOX
+// ========================================
+
+function fecharLightbox() {
+
+    if (!imageLightbox) {
+        return;
+    }
+
+
+    imageLightbox.classList.remove(
+        "open"
+    );
+
+
+    imageLightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+// ========================================
+// FOTO ANTERIOR
+// ========================================
+
+function fotoAnterior() {
+
+    if (
+        listaFotosGaleria.length <= 1
+    ) {
+
+        return;
+
+    }
+
+
+    fotoAtualGaleria--;
+
+
+    if (
+        fotoAtualGaleria < 0
+    ) {
+
+        fotoAtualGaleria =
+            listaFotosGaleria.length - 1;
+
+    }
+
+
+    const novaFoto =
+        listaFotosGaleria[
+            fotoAtualGaleria
+        ];
+
+
+    if (
+        novaFoto &&
+        novaFoto.url
+    ) {
+
+        mostrarImagem(
+            novaFoto.url,
+            fotoAtualGaleria
+        );
+
+    }
+
+
+    if (
+        imageLightbox &&
+        imageLightbox.classList.contains(
+            "open"
+        )
+    ) {
+
+        atualizarLightbox();
+
+    }
+
+}
+
+
+// ========================================
+// PRÓXIMA FOTO
+// ========================================
+
+function proximaFoto() {
+
+    if (
+        listaFotosGaleria.length <= 1
+    ) {
+
+        return;
+
+    }
+
+
+    fotoAtualGaleria++;
+
+
+    if (
+        fotoAtualGaleria >=
+        listaFotosGaleria.length
+    ) {
+
+        fotoAtualGaleria =
+            0;
+
+    }
+
+
+    const novaFoto =
+        listaFotosGaleria[
+            fotoAtualGaleria
+        ];
+
+
+    if (
+        novaFoto &&
+        novaFoto.url
+    ) {
+
+        mostrarImagem(
+            novaFoto.url,
+            fotoAtualGaleria
+        );
+
+    }
+
+
+    if (
+        imageLightbox &&
+        imageLightbox.classList.contains(
+            "open"
+        )
+    ) {
+
+        atualizarLightbox();
+
+    }
+
+}
+
+
+// ========================================
+// CONFIGURAR LIGHTBOX
+// ========================================
+
+function configurarLightbox() {
+
+    if (
+        mainImage &&
+        imageLightbox
+    ) {
+
+        mainImage.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target.closest(
+                        ".vehicle-gallery-arrow"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    event.target.tagName ===
+                    "IMG"
+                ) {
+
+                    abrirLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (imageLightboxClose) {
+
+        imageLightboxClose.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                fecharLightbox();
+
+            }
+        );
+
+    }
+
+
+    if (lightboxArrowLeft) {
+
+        lightboxArrowLeft.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                fotoAnterior();
+
+            }
+        );
+
+    }
+
+
+    if (lightboxArrowRight) {
+
+        lightboxArrowRight.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                proximaFoto();
+
+            }
+        );
+
+    }
+
+
+    if (imageLightbox) {
+
+        imageLightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    imageLightbox
+                ) {
+
+                    fecharLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (imageLightboxImage) {
+
+        imageLightboxImage.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+            }
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                !imageLightbox ||
+                !imageLightbox.classList.contains(
+                    "open"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                fecharLightbox();
+
+                return;
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowLeft"
+            ) {
+
+                fotoAnterior();
+
+                return;
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowRight"
+            ) {
+
+                proximaFoto();
+
+                return;
+
+            }
+
+        }
+    );
+
+}
+
+
+// ========================================
 // MOSTRAR IMAGEM
 // ========================================
 
@@ -188,10 +726,12 @@ function mostrarImagem(
 ) {
 
     if (!mainImage) {
-
         return;
-
     }
+
+
+    fotoAtualGaleria =
+        indice;
 
 
     mainImage.innerHTML =
@@ -229,6 +769,140 @@ function mostrarImagem(
     );
 
 
+    // ====================================
+    // SETAS
+    // ====================================
+
+    if (
+        listaFotosGaleria.length > 1
+    ) {
+
+        // --------------------------------
+        // SETA ESQUERDA
+        // --------------------------------
+
+        const setaEsquerda =
+            document.createElement(
+                "button"
+            );
+
+
+        setaEsquerda.type =
+            "button";
+
+
+        setaEsquerda.className =
+            "vehicle-gallery-arrow vehicle-gallery-arrow-left";
+
+
+        setaEsquerda.setAttribute(
+            "aria-label",
+            "Foto anterior"
+        );
+
+
+        setaEsquerda.innerHTML =
+            "‹";
+
+
+        setaEsquerda.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                fotoAnterior();
+
+            }
+        );
+
+
+        mainImage.appendChild(
+            setaEsquerda
+        );
+
+
+        // --------------------------------
+        // SETA DIREITA
+        // --------------------------------
+
+        const setaDireita =
+            document.createElement(
+                "button"
+            );
+
+
+        setaDireita.type =
+            "button";
+
+
+        setaDireita.className =
+            "vehicle-gallery-arrow vehicle-gallery-arrow-right";
+
+
+        setaDireita.setAttribute(
+            "aria-label",
+            "Próxima foto"
+        );
+
+
+        setaDireita.innerHTML =
+            "›";
+
+
+        setaDireita.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                proximaFoto();
+
+            }
+        );
+
+
+        mainImage.appendChild(
+            setaDireita
+        );
+
+
+        // --------------------------------
+        // CONTADOR
+        // --------------------------------
+
+        const contador =
+            document.createElement(
+                "span"
+            );
+
+
+        contador.id =
+            "photoCounter";
+
+
+        contador.className =
+            "vehicle-gallery-counter";
+
+
+        mainImage.appendChild(
+            contador
+        );
+
+
+        atualizarContadorFoto();
+
+    }
+
+
+    // ====================================
+    // ATUALIZAR MINIATURAS
+    // ====================================
+
     const lista =
         document.querySelectorAll(
             ".vehicle-thumbnail"
@@ -259,6 +933,22 @@ function mostrarImagem(
 
         }
     );
+
+
+    // ====================================
+    // ATUALIZAR LIGHTBOX SE ABERTO
+    // ====================================
+
+    if (
+        imageLightbox &&
+        imageLightbox.classList.contains(
+            "open"
+        )
+    ) {
+
+        atualizarLightbox();
+
+    }
 
 }
 
@@ -402,9 +1092,7 @@ function configurarWhatsapp(
 
 
     if (!vehicleWhatsapp) {
-
         return;
-
     }
 
 
@@ -453,16 +1141,6 @@ function configurarWhatsapp(
     mensagem +=
         ".";
 
-
-    /*
-     * NÚMERO DO WHATSAPP DA LOJA
-     *
-     * Substitua pelo número real,
-     * com código do país e DDD.
-     *
-     * Exemplo:
-     * 5555999999999
-     */
 
     const numeroWhatsapp =
         "5555999999999";
@@ -601,7 +1279,19 @@ async function carregarVeiculo() {
 
 
         // ====================================
-        // CONDIÇÃO DO VEÍCULO
+        // SALVAR FOTOS DA GALERIA
+        // ====================================
+
+        listaFotosGaleria =
+            listaFotos;
+
+
+        fotoAtualGaleria =
+            0;
+
+
+        // ====================================
+        // CONDIÇÃO
         // ====================================
 
         const categoria =
@@ -621,7 +1311,7 @@ async function carregarVeiculo() {
 
 
         // ====================================
-        // STATUS DO VEÍCULO
+        // STATUS
         // ====================================
 
         const status =
@@ -787,7 +1477,7 @@ async function carregarVeiculo() {
 
 
         // ====================================
-        // QUILOMETRAGEM
+        // KM
         // ====================================
 
         const km =
@@ -912,7 +1602,7 @@ async function carregarVeiculo() {
 
 
         // ====================================
-        // GALERIA
+        // GALERIA / MINIATURAS
         // ====================================
 
         if (thumbnails) {
@@ -1006,6 +1696,10 @@ async function carregarVeiculo() {
             );
 
 
+            // ==================================
+            // PRIMEIRA FOTO
+            // ==================================
+
             mostrarImagem(
                 listaFotos[0].url,
                 0
@@ -1046,6 +1740,7 @@ async function carregarVeiculo() {
             veiculo
         );
 
+
     } catch (erro) {
 
         console.error(
@@ -1058,6 +1753,13 @@ async function carregarVeiculo() {
     }
 
 }
+
+
+// ========================================
+// INICIALIZAR LIGHTBOX
+// ========================================
+
+configurarLightbox();
 
 
 // ========================================
